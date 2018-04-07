@@ -27,6 +27,7 @@ def returnAbsolutePathIndex():
 
 
 def index(request):
+    print("the requested path is: ", request.path)
     image_data = open(returnAbsolutePathIndex(), "rb").read()
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
@@ -50,5 +51,5 @@ def returnImagesList(request):
         for file in filenames:
             print(file)
             if 'html' not in file:
-                files.append(file)
-    return HttpResponse(str(files), content_type="text/json")
+                files.append(file.replace('png', ''))
+    return HttpResponse(str(set(files)), content_type="text/json")
