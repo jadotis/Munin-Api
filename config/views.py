@@ -26,14 +26,9 @@ def modules(request):
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
-    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), machine).sub(r'\s+', '', 'strip my spaces')
+    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), machine)
+    re.sub(r'\s+', '',finalized_Path)
     print("finalized path is: ", finalized_Path)
-
-
-
-
-
-
 
     files = []
     for(dirpath, dirnames, filenames) in walk(finalized_Path):
