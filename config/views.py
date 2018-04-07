@@ -30,9 +30,9 @@ def modules(request):
     print("finalized path is: ", finalized_Path)
 
     files = []
-    for(dirpath, dirnames, filename) in walk(finalized_Path):
-        print(filename)
-        if filename[-4:] not in 'html':
-            files.extend(filename)
+    for(dirpath, dirnames, filenames) in walk(finalized_Path):
+        for file in filenames:
+            if 'html' not in file:
+                files.extend(file)
     return HttpResponse(str(files), content_type="text/json")
 
