@@ -2,7 +2,7 @@
   "config": {
     "baseUrl" :"127.0.0.1",
     "muninDir" : "/etc/munin/munin.conf",
-    "imageDirectory":  "/var/cache/munin/www/Daedalus/Daedalus",
+    "imageDirectory":  "/var/cache/munin/www/",
     "Configuration" :[]
   }
 }
