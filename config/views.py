@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import os
 from os import walk, path
 import json
+import re
 
 
 def import_config(file):
@@ -17,8 +18,6 @@ def return_config(request):
 
 def modules(request):
     filePath = import_config('config.json')['config']['muninDir']
-    #mockFilePath = "C:\\Users\\jadotis\\Documents\\Vuze Downloads"
-    #Must build the filepath from the real config file.
     file_Handle = open(filePath, "r")
     machine_Name = file_Handle.readline()
     print("initial value of machine_name: ", machine_Name)
@@ -27,8 +26,7 @@ def modules(request):
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
-    print(machine)
-    finalized_Path = path.join(path.join(filePath, machine), machine).replace("munin.conf/","")
+    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), machine).sub(r'\s+', '', 'strip my spaces')
     print("finalized path is: ", finalized_Path)
 
 
