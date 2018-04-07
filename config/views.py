@@ -20,8 +20,9 @@ def modules(request):
     #mockFilePath = "C:\\Users\\jadotis\\Documents\\Vuze Downloads"
     #Must build the filepath from the real config file.
     file_Handle = open(filePath, "r")
-    machine_Name = ""
-    while machine_Name[0] != "[" and machine_Name[-1] != "]":
+    machine_Name = file_Handle.readline()
+    print("initial value of machine_name: ", machine_Name)
+    while machine_Name != "" and machine_Name[0] != "[" and machine_Name[-1] != "]":
         machine_Name = file_Handle.readLine()
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
