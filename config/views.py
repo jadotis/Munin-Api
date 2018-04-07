@@ -28,7 +28,7 @@ def modules(request):
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
     print(machine)
-    finalized_Path = path.join(filePath, machine, machine)
+    finalized_Path = path.join(path.join(filePath, machine),machine)
     print("finalized path is: ", finalized_Path)
 
 
