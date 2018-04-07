@@ -4,6 +4,7 @@ import os
 from os import walk, path
 import json
 import re
+from string import whitespace
 
 
 def import_config(file):
@@ -26,7 +27,7 @@ def modules(request):
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
-    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), re.sub(r'\s+', '',machine))
+    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), machine.translate(None, whitespace))
 
     print("finalized path is: ", finalized_Path)
 
