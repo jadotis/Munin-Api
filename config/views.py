@@ -25,9 +25,9 @@ def modules(request):
         machine_Name = file_Handle.readline()
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
-    machine = machine_Name.replace("[", "").replace("]", "")
+    machine = machine_Name.replace("[", "").replace("]", "").replace*(r'\s+', '')
     finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'], machine), machine)
-    re.sub(r'\s+', '',finalized_Path)
+    #re.sub(r'\s+', '',finalized_Path)
     print("finalized path is: ", finalized_Path)
 
     files = []
