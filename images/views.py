@@ -20,6 +20,7 @@ def returnAbsolutePathIndex():
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
     finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'].replace("\n",""), machine.replace("\n",""), machine.replace("\n","")))
+    return finalized_Path
 
 
 
