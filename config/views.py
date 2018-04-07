@@ -23,7 +23,7 @@ def modules(request):
     machine_Name = file_Handle.readline()
     print("initial value of machine_name: ", machine_Name)
     while machine_Name != "" and machine_Name[0] != "[" and machine_Name[-1] != "]":
-        machine_Name = file_Handle.readLine()
+        machine_Name = file_Handle.readline()
         print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
