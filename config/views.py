@@ -21,8 +21,9 @@ def modules(request):
     #Must build the filepath from the real config file.
     file_Handle = open(filePath, "r")
     machine_Name = ""
-    while machine_Name[0] != "[":
+    while machine_Name[0] != "[" and machine_Name[-1] != "]":
         machine_Name = file_Handle.readLine()
+        print("machine_Name is: ", machine_Name)
     #TODO implement the error parsing here.
     machine = machine_Name.replace("[", "").replace("]", "")
     print(machine)
