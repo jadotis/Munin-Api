@@ -31,7 +31,7 @@ def modules(request):
 
     files = []
     for(dirpath, dirnames, filename) in walk(finalized_Path):
-        if(".html" not in filename):
+        if 'html' not in filename:
             files.extend(filename)
     return HttpResponse(str(files), content_type="text/json")
 
