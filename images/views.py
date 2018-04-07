@@ -29,7 +29,7 @@ def index(request):
     print("the requested path is: ", request.path)
     pathString = request.path.split('/')
     print(pathString)
-    image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1] + 'png'), "rb").read()
+    image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1] + '.png'), "rb").read()
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
 
