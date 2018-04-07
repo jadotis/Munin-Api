@@ -26,7 +26,9 @@ def returnAbsolutePathIndex():
 
 def index(request):
     print("the requested path is: ", request.path)
-    image_data = open(returnAbsolutePathIndex(), "rb").read()
+    pathString = request.path.split('/')
+    print(pathString)
+    image_data = open(path.join(returnAbsolutePathIndex() + pathString[-1]), "rb").read()
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
 
