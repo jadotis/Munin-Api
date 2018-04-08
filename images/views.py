@@ -7,13 +7,19 @@ import json
 
 
 def import_config(file):
+    '''
+    Simple Configuration parser -- Non static
+
+    :param file: Config.json
+    :return: Json Data Array
+    '''
     with open(file) as config_file:
         data = json.load(config_file)
     return data
 
 def returnAbsolutePathIndex():
     '''
-    Returns the absolute munin path
+    Returns the absolute munin path --Linux Dirs only
 
     :return: plain path string
     '''
@@ -21,9 +27,12 @@ def returnAbsolutePathIndex():
     filePath = import_config('config.json')['config']['muninDir']
     file_Handle = open(filePath, "r")
     machine_Name = file_Handle.readline()
-    while machine_Name != "" and machine_Name[0] != "[" and machine_Name[-1] != "]":
-        machine_Name = file_Handle.readline()
-    #TODO implement the error parsing here.
+    try:
+        while machine_Name != "" and machine_Name[0] != "[" and machine_Name[-1] != "]":
+            machine_Name = file_Handle.readline()
+    except IndexError:
+            return HttpResponse("No name was able to be located in the file", content_type="text/json")
+
     machine = machine_Name.replace("[", "").replace("]", "")
     finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'].replace("\n",""), machine.replace("\n",""), machine.replace("\n","")))
     return finalized_Path
@@ -42,7 +51,7 @@ def index(request):
     if '.png' not in pathString:
         image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1] + '.png'), "rb").read()
     else:
-        image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1] + '.png'), "rb").read()
+        image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1]), "rb").read()
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
 
