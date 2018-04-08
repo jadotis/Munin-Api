@@ -47,8 +47,9 @@ def index(request):
     '''
     print("the requested path is: ", request.path)
     pathString = request.path.split('/')
+    flag  = pathString[-4:]
 
-    if '.png' not in pathString:
+    if flag != '.png':
         image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1] + '.png'), "rb").read()
     else:
         image_data = open(path.join(returnAbsolutePathIndex(), pathString[-1]), "rb").read()
