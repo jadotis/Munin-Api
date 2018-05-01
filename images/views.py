@@ -74,7 +74,8 @@ def returnImagesList(request):
             print(file)
             if 'html' not in file:
                 files.append(file)
-    json_string = json.dumps(files)
+    #json_string = "{" + json.dumps(files) + "}"
+    json_string = "{ images: " + str(files) + "}"
     return HttpResponse(json_string, content_type="text/json")
 
 def returnElements(request):
