@@ -100,6 +100,5 @@ def returnElements(request):
                     files.append(file.split('_')[0])
                 else:
                     files.append(file.split('-')[0])
-
-
-    return HttpResponse(set(files), content_type="text/json")
+    print(files)
+    return HttpResponse(str(set(files)), content_type="text/json")
