@@ -69,14 +69,15 @@ def returnImagesList(request):
 
 
     files = []
+    res = ""
     for(dirpath, dirnames, filenames) in walk(finalized_Path):
         for file in filenames:
             print(file)
             if 'html' not in file:
                 files.append(file)
-    #json_string = "{" + json.dumps(files) + "}"
-    json_string = "{ images: " + str(files) + "}"
-    return HttpResponse(json_string, content_type="text/json")
+                res += str(file) + " "
+
+    return HttpResponse(res, content_type="text/json")
 
 def returnElements(request):
     filePath = import_config('config.json')['config']['muninDir']
