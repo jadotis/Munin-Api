@@ -77,7 +77,7 @@ def returnImagesList(request):
                 files.append(file)
                 res += str(file) + " "
 
-    return HttpResponse(res, content_type="text/json")
+    return HttpResponse(res[:-1], content_type="text/json")
 
 def returnElements(request):
     filePath = import_config('config.json')['config']['muninDir']
