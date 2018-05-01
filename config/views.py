@@ -47,7 +47,7 @@ def modules(request):
     for(dirpath, dirnames, filenames) in walk(finalized_Path):
         for file in filenames:
             if 'html' not in file:
-                files.append(file.replace('png', ''))
+                files.append(file.replace('.png', ''))
 
     return HttpResponse(str(set(files)), content_type="text/json")
 
