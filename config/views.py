@@ -49,5 +49,5 @@ def modules(request):
             if 'html' not in file:
                 files.append(file.replace('png', ''))
 
-    return HttpResponse(str(set(files)), content_type="text/json")
+    return HttpResponse(set(files), content_type="text/json")
 
