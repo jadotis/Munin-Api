@@ -40,8 +40,6 @@ def returnAbsolutePathIndex():
 def index(request):
     '''
     Returns the corresponding image for an HttpRequest -- With or without the file name extension(s)
-
-
     :param request: Request Http object --Contains Path String
     :return: Corresponding image of similar namef
     '''
@@ -55,7 +53,7 @@ def index(request):
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
 
-def returnImagesList(request):
+def returnElements(request):
     filePath = import_config('config.json')['config']['muninDir']
     file_Handle = open(filePath, "r")
     machine_Name = file_Handle.readline()
@@ -77,3 +75,31 @@ def returnImagesList(request):
             if 'html' not in file:
                 files.append(file)
     return HttpResponse(str(files), content_type="text/json")
+
+def returnImagesList(request):
+    filePath = import_config('config.json')['config']['muninDir']
+    file_Handle = open(filePath, "r")
+    machine_Name = file_Handle.readline()
+
+    try:
+        while machine_Name != "" and machine_Name[0] != "[" and machine_Name[-1] != "]":
+            machine_Name = file_Handle.readline()
+    except IndexError:
+            return HttpResponse("No name was able to be located in the file", content_type="text/json")
+
+    machine = machine_Name.replace("[", "").replace("]", "")
+    finalized_Path = path.join(path.join(import_config('config.json')['config']['imageDirectory'].replace("\n",""), machine.replace("\n",""), machine.replace("\n","")))
+
+
+    files = []
+    for(dirpath, dirnames, filenames) in walk(finalized_Path):
+        for file in filenames:
+            print(file)
+            if 'html' not in file:
+                if '_' in file:
+                    files.append(file.split('_')[0])
+                else:
+                    files.append(file.split('-')[0])
+
+
+    return HttpResponse(set(files), content_type="text/json")
