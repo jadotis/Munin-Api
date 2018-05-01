@@ -1,6 +1,6 @@
 {
   "config": {
-    "baseUrl" :"0.0.0.0",
+    "baseUrl" :"127.0.0.1",
     "muninDir" : "/etc/munin/munin.conf",
     "imageDirectory":  "/var/cache/munin/www/",
     "Configuration" :[]
