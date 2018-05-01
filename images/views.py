@@ -53,7 +53,7 @@ def index(request):
     return HttpResponse(image_data, content_type="image/jpg")
     #Dynamically builds out the path
 
-def returnElements(request):
+def returnImagesList(request):
     filePath = import_config('config.json')['config']['muninDir']
     file_Handle = open(filePath, "r")
     machine_Name = file_Handle.readline()
@@ -76,7 +76,7 @@ def returnElements(request):
                 files.append(file)
     return HttpResponse(str(files), content_type="text/json")
 
-def returnImagesList(request):
+def returnElements(request):
     filePath = import_config('config.json')['config']['muninDir']
     file_Handle = open(filePath, "r")
     machine_Name = file_Handle.readline()
